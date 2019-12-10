@@ -4,10 +4,15 @@ import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
+import org.hibernate.annotations.ForeignKey;
 
 @Entity
 @Table(name="pessoa")
@@ -17,30 +22,37 @@ public class Pessoa implements Serializable {
     
     @Id
     @GeneratedValue
-    @Column(name="idPessoa", nullable = false)
+    @Column(name="idPessoa", nullable = false, unique = true)
     private Integer idPessoa;
     
-    @Column(name="nome", nullable = false, length = 80)
+    @Column(name="Nome", nullable = false, length = 80)
     private String nome;
     
-    @Column(name="email")
+    @Column(name="EMail")
     private String email;
     
-    @Column(name="telefone")
+    @Column(name="Telefone")
     private String telefone;
     
     @Column(name="cpf")
     private String cpf;
     
-    @Column(name="dataDeNascimento")
+    @Column(name="DataNascimento")
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dataDeNascimento;
     
-    @Column(name="dataDeCadastro")
+    @Column(name="DataCadastro")
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date dataDeCadastro;
     
-   // private Integer idSexo;
+    @ManyToOne(optional = false)
+    @ForeignKey(name = "PessoaSexo")
+    @JoinColumn(name = "idSexo", referencedColumnName = "idSexo")
+    private Sexo sexo;
+    
+    @OneToOne(mappedBy = "pessoa", fetch = FetchType.LAZY)
+    @ForeignKey(name = "EnderecoPessoa")
+    private Endereco endereco;
 
     public Pessoa() {
     }
@@ -104,6 +116,22 @@ public class Pessoa implements Serializable {
     public void setDataDeCadastro(Date dataDeCadastro) {
         this.dataDeCadastro = dataDeCadastro;
     }
+
+    public Sexo getSexo() {
+        return sexo;
+    }
+
+    public void setSexo(Sexo sexo) {
+        this.sexo = sexo;
+    }   
+
+    public Endereco getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
+    }    
 
     @Override
     public int hashCode() {
