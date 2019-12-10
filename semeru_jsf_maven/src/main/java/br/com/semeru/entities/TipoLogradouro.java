@@ -1,49 +1,65 @@
 package br.com.semeru.entities;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import org.hibernate.annotations.ForeignKey;
 
 @Entity
-@Table(name="tipologadouro")
+@Table(name="tipologradouro")
 public class TipoLogradouro implements Serializable {
     
     private static final long serialVersionUID = 1L;
     
     @Id
     @GeneratedValue
-    @Column(name="idTipoLogadouro", nullable = false, unique = true)
-    private Integer idTipoLogadouro;
+    @Column(name="idTipoLogradouro", nullable = false, unique = true)
+    private Integer idTipoLogradouro;
     
-    @Column(name="DescricaoTipoLogadouro", nullable = false, length = 40)
-    private String descricaoTipoLogadouro;
+    @Column(name="DescricaoTipoLogradouro", nullable = false, length = 40)
+    private String descricaoTipoLogradouro;
+    
+    @OneToMany(mappedBy = "tipologradouro", fetch = FetchType.LAZY)
+    @ForeignKey(name = "EnderecoTipoLogradouro")
+    private List<Endereco> enderecos;
 
     public TipoLogradouro() {
     }
 
-    public Integer getIdTipoLogadouro() {
-        return idTipoLogadouro;
+    public Integer getIdTipoLogradouro() {
+        return idTipoLogradouro;
     }
 
-    public void setIdTipoLogadouro(Integer idTipoLogadouro) {
-        this.idTipoLogadouro = idTipoLogadouro;
+    public void setIdTipoLogradouro(Integer idTipoLogradouro) {
+        this.idTipoLogradouro = idTipoLogradouro;
     }
 
-    public String getDescricaoTipoLogadouro() {
-        return descricaoTipoLogadouro;
+    public String getDescricaoTipoLogradouro() {
+        return descricaoTipoLogradouro;
     }
 
-    public void setDescricaoTipoLogadouro(String descricaoTipoLogadouro) {
-        this.descricaoTipoLogadouro = descricaoTipoLogadouro;
+    public void setDescricaoTipoLogradouro(String descricaoTipoLogradouro) {
+        this.descricaoTipoLogradouro = descricaoTipoLogradouro;
+    }
+
+    public List<Endereco> getEnderecos() {
+        return enderecos;
+    }
+
+    public void setEnderecos(List<Endereco> enderecos) {
+        this.enderecos = enderecos;
     }
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 67 * hash + (this.idTipoLogadouro != null ? this.idTipoLogadouro.hashCode() : 0);
+        int hash = 3;
+        hash = 73 * hash + (this.idTipoLogradouro != null ? this.idTipoLogradouro.hashCode() : 0);
         return hash;
     }
 
@@ -59,7 +75,7 @@ public class TipoLogradouro implements Serializable {
             return false;
         }
         final TipoLogradouro other = (TipoLogradouro) obj;
-        if (this.idTipoLogadouro != other.idTipoLogadouro && (this.idTipoLogadouro == null || !this.idTipoLogadouro.equals(other.idTipoLogadouro))) {
+        if (this.idTipoLogradouro != other.idTipoLogradouro && (this.idTipoLogradouro == null || !this.idTipoLogradouro.equals(other.idTipoLogradouro))) {
             return false;
         }
         return true;

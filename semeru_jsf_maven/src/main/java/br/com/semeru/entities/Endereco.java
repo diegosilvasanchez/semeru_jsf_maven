@@ -46,12 +46,12 @@ public class Endereco implements Serializable {
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @ForeignKey(name = "EnderecoTipoLogradouro")
     @JoinColumn(name = "idTipoLogradouro", referencedColumnName = "idTipoLogradouro")
-    private TipoLogradouro tipoLogradouro;
+    private TipoLogradouro tipologradouro;
     
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @ForeignKey(name = "EnderecoTipoEndereco")
     @JoinColumn(name = "idTipoEndereco", referencedColumnName = "idTipoEndereco")
-    private TipoEndereco tipoEndereco;
+    private TipoEndereco tipoendereco;
     
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @ForeignKey(name = "EnderecoCidade")
@@ -66,8 +66,8 @@ public class Endereco implements Serializable {
     public Endereco() {
         this.cidade = new Cidade();
         this.pessoa = new Pessoa();
-        this.tipoLogradouro = new TipoLogradouro();
-        this.tipoEndereco = new TipoEndereco();
+        this.tipologradouro = new TipoLogradouro();
+        this.tipoendereco = new TipoEndereco();
         this.estado = new Estado();
         this.pessoa = new Pessoa();
     }
@@ -128,21 +128,21 @@ public class Endereco implements Serializable {
         this.pessoa = pessoa;
     }
 
-    public TipoLogradouro getTipoLogradouro() {
-        return tipoLogradouro;
+    public TipoLogradouro getTipologradouro() {
+        return tipologradouro;
     }
 
-    public void setTipoLogradouro(TipoLogradouro tipoLogradouro) {
-        this.tipoLogradouro = tipoLogradouro;
+    public void setTipologradouro(TipoLogradouro tipologradouro) {
+        this.tipologradouro = tipologradouro;
     }
 
-    public TipoEndereco getTipoEndereco() {
-        return tipoEndereco;
+    public TipoEndereco getTipoendereco() {
+        return tipoendereco;
     }
 
-    public void setTipoEndereco(TipoEndereco tipoEndereco) {
-        this.tipoEndereco = tipoEndereco;
-    }
+    public void setTipoendereco(TipoEndereco tipoendereco) {
+        this.tipoendereco = tipoendereco;
+    }   
 
     public Cidade getCidade() {
         return cidade;
