@@ -26,7 +26,7 @@ public class Cidade implements Serializable {
     private String nomeCidade;
     
     @OneToMany(mappedBy = "cidade", fetch = FetchType.LAZY)
-    @ForeignKey(name = "Endereco_Cidade")
+    @ForeignKey(name = "EnderecoCidade")
     private List<Endereco> enderecos;
 
     public Cidade() {

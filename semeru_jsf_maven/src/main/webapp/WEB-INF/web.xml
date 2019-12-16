@@ -20,6 +20,14 @@
         </session-timeout>
     </session-config>    
     
+    <!-- Configuração do PrimeFaces -->
+    <context-param>
+        <param-name>primefaces.THEME</param-name>
+        <param-value>sam</param-value>
+    </context-param>   
+    
+     <!-- Configuração do JSF --> 
+    
     <context-param>
         <param-name>javax.faces.PROJECT_STAGE</param-name>
         <param-value>Development</param-value>

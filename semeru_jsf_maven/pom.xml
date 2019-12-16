@@ -116,7 +116,7 @@
         <!-- ######## TEMAS DO PRIMEFACES ######### -->        
         <dependency>              
             <groupId>org.primefaces.themes</groupId>  
-            <artifactId>cupertino</artifactId>              
+            <artifactId>babylon</artifactId>              
             <version>${themes.version}</version> 
         </dependency> 
         
