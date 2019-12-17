@@ -19,10 +19,10 @@ public class Cidade implements Serializable {
     
     @Id
     @GeneratedValue
-    @Column(name="idCidade", nullable = false, unique = true)
+    @Column(name="IdCidade", nullable = false, unique = true)
     private Integer idCidade;
     
-    @Column(name="NomeCidade", nullable = false, length = 70)
+    @Column(name="Nome", nullable = false, length = 70)
     private String nomeCidade;
     
     @OneToMany(mappedBy = "cidade", fetch = FetchType.LAZY)

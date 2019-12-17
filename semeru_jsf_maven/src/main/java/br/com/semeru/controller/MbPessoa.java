@@ -6,13 +6,14 @@ import br.com.semeru.entities.Endereco;
 import br.com.semeru.entities.Pessoa;
 import br.com.semeru.util.FacesContextUtil;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
-@ManagedBean
+@ManagedBean(name = "mbPessoa")
 @SessionScoped
 public class MbPessoa implements Serializable {
     
@@ -51,17 +52,22 @@ public class MbPessoa implements Serializable {
     }
 
     private void insertPessoa() {
+        pessoa.setDataDeCadastro(new Date());
         pessoaDAO().save(pessoa);
+        endereco.setPessoa(pessoa);
+        enderecoDAO().save(endereco);
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Gravação Efetuada com Sucesso", ""));
     }
 
     private void updatePessoa() {
         pessoaDAO().update(pessoa);
+        enderecoDAO().update(endereco);
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Atualização Efetuada com Sucesso", ""));
     }
     
     public void deletePessoa() {
         pessoaDAO().remove(pessoa);
+        enderecoDAO().remove(endereco);
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Exclusão Efetuada com Sucesso", ""));
     }
 

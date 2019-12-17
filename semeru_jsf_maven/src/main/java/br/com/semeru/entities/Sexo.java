@@ -19,10 +19,10 @@ public class Sexo implements Serializable{
     
     @Id
     @GeneratedValue
-    @Column(name="idSexo", nullable = false, unique = true)
+    @Column(name="IdSexo", nullable = false, unique = true)
     private Integer idSexo;
     
-    @Column(name="DescricaoSexo", nullable = false, length = 10)
+    @Column(name="Descricao", nullable = false, length = 10)
     private String descricao;
     
     @OneToMany(mappedBy = "sexo",fetch = FetchType.LAZY)

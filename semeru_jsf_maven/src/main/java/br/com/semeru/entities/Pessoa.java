@@ -37,17 +37,17 @@ public class Pessoa implements Serializable {
     @Column(name="cpf")
     private String cpf;
     
-    @Column(name="DataNascimento")
+    @Column(name="DataDeNascimento")
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dataDeNascimento;
     
-    @Column(name="DataCadastro")
+    @Column(name="DataDeCadastro")
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date dataDeCadastro;
     
     @ManyToOne(optional = false)
     @ForeignKey(name = "PessoaSexo")
-    @JoinColumn(name = "idSexo", referencedColumnName = "idSexo")
+    @JoinColumn(name = "IdSexo", referencedColumnName = "IdSexo")
     private Sexo sexo;
     
     @OneToOne(mappedBy = "pessoa", fetch = FetchType.LAZY)
@@ -55,6 +55,7 @@ public class Pessoa implements Serializable {
     private Endereco endereco;
 
     public Pessoa() {
+        this.sexo = new Sexo();
     }
 
     public static long getSerialVersionUID() {

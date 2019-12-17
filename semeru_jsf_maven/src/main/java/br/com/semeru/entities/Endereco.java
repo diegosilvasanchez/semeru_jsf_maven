@@ -20,7 +20,7 @@ public class Endereco implements Serializable {
     
     @Id
     @GeneratedValue
-    @Column(name="idEndereco", nullable = false, unique = true)
+    @Column(name="IdEndereco", nullable = false, unique = true)
     private Integer idEndereco;
     
     @Column(name="Bairro", length = 80)
@@ -40,27 +40,27 @@ public class Endereco implements Serializable {
     
     @OneToOne(optional = true, fetch = FetchType.LAZY)
     @ForeignKey(name = "EnderecoPessoa")
-    @JoinColumn(name = "idPessoa", referencedColumnName = "idPessoa")
+    @JoinColumn(name = "IdPessoa", referencedColumnName = "IdPessoa")
     private Pessoa pessoa;
     
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @ForeignKey(name = "EnderecoTipoLogradouro")
-    @JoinColumn(name = "idTipoLogradouro", referencedColumnName = "idTipoLogradouro")
+    @JoinColumn(name = "IdTipoLogradouro", referencedColumnName = "IdTipoLogradouro")
     private TipoLogradouro tipologradouro;
     
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @ForeignKey(name = "EnderecoTipoEndereco")
-    @JoinColumn(name = "idTipoEndereco", referencedColumnName = "idTipoEndereco")
+    @JoinColumn(name = "IdTipoEndereco", referencedColumnName = "IdTipoEndereco")
     private TipoEndereco tipoendereco;
     
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @ForeignKey(name = "EnderecoCidade")
-    @JoinColumn(name = "idCidade", referencedColumnName = "idCidade")
+    @JoinColumn(name = "IdCidade", referencedColumnName = "IdCidade")
     private Cidade cidade;
     
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @ForeignKey(name = "EnderecoEstado")
-    @JoinColumn(name = "idEstado", referencedColumnName = "idEstado")
+    @JoinColumn(name = "IdEstado", referencedColumnName = "IdEstado")
     private Estado estado;
 
     public Endereco() {
