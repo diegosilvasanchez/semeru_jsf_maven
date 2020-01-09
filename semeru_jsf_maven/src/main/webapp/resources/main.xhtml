@@ -39,10 +39,10 @@
 
                     <p:submenu label="Cadastros">  
                         <p:menuitem value="Cidades" url="/restrict/cadastrarcidade.faces"/>                        
-                        <p:menuitem value="Pessoas" url="/restrict/cadastrarpessoa.faces" ajax="false"/>                        
+                        <p:menuitem value="Pessoas" action="#{mbPessoa.limpaPessoa}" ajax="false"/>                        
                     </p:submenu> 
                     <p:submenu label="Consultas">  
-                        <p:menuitem value="Pessoas" url="/restrict/consultarpessoas.faces"/>  
+                        <p:menuitem value="Pessoas" url="/restrict/consultarpessoa.faces"/>  
                     </p:submenu>                                      
                 </p:menubar> 
             </h:form>           

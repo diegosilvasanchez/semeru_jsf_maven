@@ -1,5 +1,6 @@
 package br.com.semeru.controller;
 
+import br.com.semeru.conversores.ConverterSHA1;
 import br.com.semeru.dao.HibernateDAO;
 import br.com.semeru.dao.InterfaceDAO;
 import br.com.semeru.entities.Endereco;
@@ -19,12 +20,15 @@ public class MbPessoa implements Serializable {
     
     private static final long serialVersionUID = 1L;
     
+    private String confereSenha;
     private Pessoa pessoa = new Pessoa();
     private Endereco endereco = new Endereco();
     private List<Pessoa> pessoas;    
     private List<Endereco> enderecos;    
 
     public MbPessoa() {
+        pessoa = new Pessoa();
+        endereco = new Endereco();
     }
     
     private InterfaceDAO<Pessoa> pessoaDAO(){
@@ -38,7 +42,7 @@ public class MbPessoa implements Serializable {
     }
     
     public String editPessoa(){
-        return "/restrict/cadastrapessoa.faces";
+        return "/restrict/cadastrarpessoa.faces";
     }
     
     public String addPessoa(){
@@ -51,12 +55,16 @@ public class MbPessoa implements Serializable {
         return null;
     }
 
-    private void insertPessoa() {
-        pessoa.setDataDeCadastro(new Date());
-        pessoaDAO().save(pessoa);
-        endereco.setPessoa(pessoa);
-        enderecoDAO().save(endereco);
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Gravação Efetuada com Sucesso", ""));
+    private void insertPessoa() {        
+        pessoa.setSenha(ConverterSHA1.cipher(pessoa.getSenha()));
+        if(pessoa.getSenha() != null && pessoa.getSenha().equals(ConverterSHA1.cipher(confereSenha))) {
+            pessoa.setPermissao("ROLE_ADMIN");            
+            pessoa.setDataDeCadastro(new Date());
+            pessoaDAO().save(pessoa);
+            endereco.setPessoa(pessoa);
+            enderecoDAO().save(endereco);
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Gravação Efetuada com Sucesso", ""));
+        }    
     }
 
     private void updatePessoa() {
@@ -70,7 +78,7 @@ public class MbPessoa implements Serializable {
         enderecoDAO().remove(endereco);
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Exclusão Efetuada com Sucesso", ""));
     }
-
+  
     public String limpaPessoa() {
         pessoa = new Pessoa();
         endereco = new Endereco();
@@ -110,4 +118,13 @@ public class MbPessoa implements Serializable {
     public void setEnderecos(List<Endereco> enderecos) {
         this.enderecos = enderecos;
     }    
+
+    public String getConfereSenha() {
+        return confereSenha;
+    }
+
+    public void setConfereSenha(String confereSenha) {
+        this.confereSenha = confereSenha;
+    }    
 }
+

@@ -55,6 +55,22 @@
                                 <p:calendar id="nascimentopessoa" value="#{mbPessoa.pessoa.dataDeNascimento}" 
                                          required="true" requiredMessage="O Campo [Data de Nascimento] é obrigatório."
                                          locale="pt" navigator="true" effect="explode" pattern="dd/MM/yyyy"/>  
+                                
+                                <h:outputLabel for="usuariopessoa" value="Usuário:"/>
+                                <p:inputText id="usuariopessoa" value="#{mbPessoa.pessoa.login}" 
+                                             required="true" requiredMessage="O Campo [Usuário] é obrigatório." size="30">
+                                </p:inputText>     
+                                    
+                                <h:outputLabel for="senhapessoa" value="Senha:"/>
+                                <p:password id="senhapessoa" size="30" maxlength="22" promptLabel="Digite sua Senha" value="#{mbPessoa.confereSenha}"
+                                            weakLabel="Senha Fraca" goodLabel="Senha Boa" strongLabel="Senha Forte" feedback="true"/>
+                                
+                                <h:outputLabel for="senhapessoa2" value="Senha:"/>
+                                <p:password id="senhapessoa2" size="30" maxlength="22" promptLabel="Confirme sua Senha" 
+                                            value="#{mbPessoa.pessoa.senha}" validator="passwordValidator"                                            
+                                            weakLabel="Senha Fraca" goodLabel="Senha Boa" strongLabel="Senha Forte" feedback="true"/>
+                                    
+                                   
                             </h:panelGrid>
                         </p:panel>
                     </p:tab>       

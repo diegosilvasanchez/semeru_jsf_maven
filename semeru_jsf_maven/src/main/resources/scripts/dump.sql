@@ -61,7 +61,7 @@ CREATE TABLE `endereco` (
   `IdEndereco` int(11) NOT NULL AUTO_INCREMENT,
   `Bairro` varchar(80) DEFAULT NULL,
   `CEP` varchar(9) DEFAULT NULL,
-  `Complemento` int(11) DEFAULT NULL,
+  `Complemento` varchar(80) DEFAULT NULL,
   `NomeLogradouro` varchar(80) DEFAULT NULL,
   `Numero` int(11) DEFAULT NULL,
   `IdCidade` int(11) NOT NULL,

@@ -45,6 +45,15 @@ public class Pessoa implements Serializable {
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date dataDeCadastro;
     
+    @Column(name="Login", unique = true, length = 25)
+    private String login;
+    
+    @Column(name="Senha", length = 40)
+    private String senha;
+    
+    @Column(name="Permissao", length = 36)
+    private String permissao;
+    
     @ManyToOne(optional = false)
     @ForeignKey(name = "PessoaSexo")
     @JoinColumn(name = "IdSexo", referencedColumnName = "IdSexo")
@@ -132,6 +141,30 @@ public class Pessoa implements Serializable {
 
     public void setEndereco(Endereco endereco) {
         this.endereco = endereco;
+    }    
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
+    public String getPermissao() {
+        return permissao;
+    }
+
+    public void setPermissao(String permissao) {
+        this.permissao = permissao;
     }    
 
     @Override
